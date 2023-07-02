@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body{
+            background: #0F2027;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to top, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to top, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            color: #e3d7d7;
+        }
+    </style>
+    <title>Customer Churn Prediction</title>
+</head>
+<body>
+    <div class="container">
+        <h1 style="width: 100%; text-align: center;">Customer Churn Prediction</h1>
+        <form method="post" action="/submit">
+            <div class="form-group">
+                <label for="CustomerID">Customer ID:</label>
+                <input type="number" class="form-control" id="CustomerID" name="CustomerID" required>
+            </div>
+
+            <div class="form-group">
+                <label for="CustomerName">Customer Surname:</label>
+                <input type="text" class="form-control" id="CustomerName" name="CustomerName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="creditScore">Credit Score:</label>
+                <input type="number" class="form-control" id="creditScore" name="creditScore" min="300" max="850" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="geography">Geography:</label>
+                <select class="form-control" id="geography" name="geography" required>
+                <option value="">Select Geography</option>
+                <option value="France">France</option>
+                <option value="Germany">Germany</option>
+                <option value="Spain">Spain</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label>Gender:</label><br>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+                <label class="form-check-label" for="male">Male</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+                <label class="form-check-label" for="female">Female</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="age">Age:</label>
+                <input type="number" class="form-control" id="age" name="age" min="18" max="100" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="tenure">Tenure:</label>
+                <input type="number" class="form-control" id="tenure" name="tenure" min="0" max="10" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="balance">Balance:</label>
+                <input type="number" step="0.01" class="form-control" id="balance" name="balance" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="numOfProducts">Number of Products:</label>
+                <input type="number" class="form-control" id="numOfProducts" name="numOfProducts" min="0" max="5" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Has Credit Card:</label><br>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hasCrCard" id="yesCrCard" value="1" required>
+                <label class="form-check-label" for="yesCrCard">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="hasCrCard" id="noCrCard" value="0" required>
+                <label class="form-check-label" for="noCrCard">No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Is Active Member:</label><br>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="isActiveMember" id="yesActiveMember" value="1" required>
+                <label class="form-check-label" for="yesActiveMember">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="isActiveMember" id="noActiveMember" value="0" required>
+                <label class="form-check-label" for="noActiveMember">No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="estimatedSalary">Estimated Salary:</label>
+                <input type="number" step="0.01" class="form-control" id="estimatedSalary" name="estimatedSalary" min="0" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Complain:</label><br>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="complain" id="yesComplain" value="1" required>
+                <label class="form-check-label" for="yesComplain">Yes</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="complain" id="noComplain" value="0" required>
+                <label class="form-check-label" for="noComplain">No</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Satisfaction Score:</label><br>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="satisfactionScore" id="score1" value="1" required>
+                <label class="form-check-label" for="score1">1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="satisfactionScore" id="score2" value="2" required>
+                <label class="form-check-label" for="score2">2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="satisfactionScore" id="score3" value="3" required>
+                <label class="form-check-label" for="score3">3</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="satisfactionScore" id="score4" value="4" required>
+                <label class="form-check-label" for="score4">4</label>
+                </div>
+                <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="satisfactionScore" id="score5" value="5" required>
+                <label class="form-check-label" for="score5">5</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="cardType">Card Type:</label>
+                <select class="form-control" id="cardType" name="cardType" required>
+                <option value="">Select Card Type</option>
+                <option value="DIAMOND">DIAMOND</option>
+                <option value="PLATINUM">PLATINUM</option>
+                <option value="GOLD">GOLD</option>
+                <option value="SILVER">SILVER</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="pointsEarned">Points Earned:</label>
+                <input type="number" class="form-control" id="pointsEarned" name="pointsEarned" min="0" max="1000" required>
+            </div>
+            
+            <button type="submit" id ="submit" class="btn btn-primary">Submit</button>
+            <button type="reset" class="btn btn-secondary">Reset</button>
+        </form>
+    <div id="output" style="width: 100%; text-align: center; font-size: xx-large; font-weight: bolder;"></div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("form").submit(function(event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: "POST",
+                    url: "/submit",
+                    data: formData,
+                    success: function(response) {
+                        $("#output").text(response.content);
+                    },
+                    error: function(error) {
+                        console.log(error);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
